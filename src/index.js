@@ -1,9 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(
-  <App />,
+import configureStore from './store';
+
+import App from './components/App';
+import GameBoard from './components/GameBoard';
+
+
+const store = configureStore();
+
+render(
+  <Provider store={store}>
+    <App>
+      <GameBoard />
+    </App>
+  </Provider>,
   document.getElementById('root')
 );

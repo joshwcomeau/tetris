@@ -1,0 +1,26 @@
+{
+  "name": "tetris",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "0.7.0",
+    "redux-devtools": "^3.3.1",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.1.0"
+  },
+  "dependencies": {
+    "aphrodite": "^1.0.0",
+    "lodash": "^4.16.4",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "redux": "^3.6.0",
+    "redux-saga": "^0.12.0",
+    "reselect": "^2.5.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

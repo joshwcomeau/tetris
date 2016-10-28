@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { Component, PropTypes } from 'react';
 
+import { drawLine } from '../../helpers/canvas';
 import Canvas from '../Canvas';
 
 
@@ -34,7 +35,7 @@ class Grid extends Component {
 
     // Draw all the row lines
     for (let i = 1; i < numRows; i += 1) {
-      this.drawLine(
+      drawLine(
         ctx,
         [0, i * tileSize],
         [width, i * tileSize]
@@ -43,19 +44,12 @@ class Grid extends Component {
 
     // Draw all the col lines.
     for (let i = 1; i < numCols; i += 1) {
-      this.drawLine(
+      drawLine(
         ctx,
         [i * tileSize, 0],
         [i * tileSize, height]
       );
     }
-  }
-
-  drawLine(ctx, from, to) {
-    ctx.beginPath();
-    ctx.moveTo(...from);
-    ctx.lineTo(...to);
-    ctx.stroke();
   }
 
   render() {

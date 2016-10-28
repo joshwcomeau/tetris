@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
 
 import {
-  GENERATE_TETROMINOS,
+  UPDATE_TETROMINOS,
 } from '../actions';
 
 
@@ -14,18 +14,13 @@ const initialState = {
 // ////////////////////
 // Reducers //////////
 // //////////////////
-const byId = (state = initialState.byId, { type, tetrominos }) => {
+const byId = (state = initialState.byId, { type, blocks }) => {
   switch (type) {
-    case GENERATE_TETROMINOS:
-      return tetrominos.map(tetromino => tetromino.blocks);
+    case UPDATE_TETROMINOS:
+      return blocks.reduce((memo, block) => ({
+        [block.id]: block,
+      }), {});
 
-    default:
-      return state;
-  }
-};
-
-const queue = (state = initialState.queue, { type }) => {
-  switch (type) {
     default:
       return state;
   }
@@ -33,10 +28,10 @@ const queue = (state = initialState.queue, { type }) => {
 
 export default combineReducers({
   byId,
-  queue,
 });
 
 
 // ////////////////////
 // Selectors /////////
 // //////////////////
+export const byIdSelector = state => state.blocks.byId;

@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import Perf from 'react-addons-perf';
 
+import { watchInitializeGame, watchGameTick } from '../sagas/run-game.saga';
 import reducer from '../reducers';
 import DevTools from '../components/DevTools';
 
@@ -19,6 +20,9 @@ export default function configureStore() {
       DevTools.instrument()
     )
   );
+
+  sagaMiddleware.run(watchInitializeGame);
+  sagaMiddleware.run(watchGameTick);
 
   // Allow direct access to the store, for debugging/testing
   window.store = store;

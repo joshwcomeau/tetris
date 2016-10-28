@@ -24,3 +24,10 @@ export function scaleCanvas(canvas, ctx) {
     ctx.scale(ratio, ratio);
   }
 }
+
+export function drawLine(ctx, from, to) {
+  ctx.beginPath();
+  ctx.moveTo(...from);
+  ctx.lineTo(...to);
+  ctx.stroke();
+}

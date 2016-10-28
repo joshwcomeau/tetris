@@ -1,3 +1,6 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({});
+import blocks from './blocks.reducer';
+import tetrominos from './tetrominos.reducer';
+
+export default combineReducers({ blocks, tetrominos });

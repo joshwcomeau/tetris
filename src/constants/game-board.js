@@ -1,3 +1,3 @@
-export const numRows = 22;
-export const numCols = 10;
-export const tileSize = 25;
+export const NUM_ROWS = 22;
+export const NUM_COLS = 10;
+export const TILE_SIZE = 25;

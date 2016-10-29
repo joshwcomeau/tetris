@@ -8,6 +8,7 @@ import {
   GAME_TICK,
   INITIALIZE_GAME,
   gameTick,
+  incrementTetrominoPosition,
   resetGame,
   placeTetrominoOnBoard,
   updateTetrominos,
@@ -44,7 +45,6 @@ function* gameLoop() {
 }
 
 function* handleGameTick() {
-  console.log('Handling game tick!!');
   // A game frame consists of dropping the currently-active tetromino
   // down 1 space, if possible. If it's not possible, destroy the tetromino,
   // lock its blocks into that position, update the queue so that the next
@@ -52,11 +52,13 @@ function* handleGameTick() {
 
   const activeTetromino = yield select(activeTetrominoWithBlocksSelector);
 
-  console.log(activeTetromino);
-
   // If the piece is not yet on the board, position it.
   if (!activeTetromino.position) {
+    // TODO: Lose condition. Check if we CAN place it on the board.
     yield put(placeTetrominoOnBoard({ id: activeTetromino.id }));
+  } else {
+    // Lower the piece by 1 row
+    yield put(incrementTetrominoPosition({ id: activeTetromino.id }));
   }
 }
 

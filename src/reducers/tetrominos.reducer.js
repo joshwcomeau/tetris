@@ -3,8 +3,9 @@ import { createSelector } from 'reselect';
 import update from 'immutability-helper';
 
 import {
-  UPDATE_TETROMINOS,
+  INCREMENT_TETROMINO_POSITION,
   PLACE_TETROMINO_ON_BOARD,
+  UPDATE_TETROMINOS,
 } from '../actions';
 import { NUM_COLS } from '../constants/game-board';
 
@@ -18,16 +19,21 @@ const startingPosition = [
   0,
 ];
 
+
 // ////////////////////
 // Reducers //////////
 // //////////////////
 const byId = (state = initialState.byId, action) => {
   switch (action.type) {
-    case UPDATE_TETROMINOS:
-      return action.tetrominos.reduce((memo, tetromino) => ({
-        ...memo,
-        [tetromino.id]: tetromino,
-      }), {});
+    case INCREMENT_TETROMINO_POSITION:
+      console.log(state, action);
+      return update(state, {
+        [action.id]: {
+          position: {
+            $apply([x, y]) { return [x, y + 1]; },
+          },
+        },
+      });
 
     case PLACE_TETROMINO_ON_BOARD:
       return update(state, {
@@ -37,6 +43,13 @@ const byId = (state = initialState.byId, action) => {
           },
         },
       });
+
+    case UPDATE_TETROMINOS:
+      return action.tetrominos.reduce((memo, tetromino) => ({
+        ...memo,
+        [tetromino.id]: tetromino,
+      }), {});
+
 
     default:
       return state;
@@ -66,8 +79,8 @@ export default combineReducers({
 // ////////////////////
 // Selectors /////////
 // //////////////////
-const byIdSelector = state => state.tetrominos.byId;
-const queueSelector = state => state.tetrominos.queue;
+export const byIdSelector = state => state.tetrominos.byId;
+export const queueSelector = state => state.tetrominos.queue;
 
 // Our currently-active tetromino is the first one in the queue.
 // Once the tetromino is placed, it is destroyed (only its blocks, as

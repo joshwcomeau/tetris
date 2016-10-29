@@ -14,10 +14,11 @@ const initialState = {
 // ////////////////////
 // Reducers //////////
 // //////////////////
-const byId = (state = initialState.byId, { type, blocks }) => {
-  switch (type) {
+const byId = (state = initialState.byId, action) => {
+  switch (action.type) {
     case UPDATE_TETROMINOS:
-      return blocks.reduce((memo, block) => ({
+      return action.blocks.reduce((memo, block) => ({
+        ...memo,
         [block.id]: block,
       }), {});
 

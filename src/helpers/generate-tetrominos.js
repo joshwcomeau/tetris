@@ -87,13 +87,14 @@ export default function generateTetrominos({ num = 100 } = {}) {
   times(num, () => {
     const tetromino = {
       id: guid.raw(),
+      position: null,
       ...sample(tetrominoDefinitions),
     };
 
     const tetrominoBlocks = tetromino.blockMapping.map(mapping => ({
       id: guid.raw(),
+      tetrominoId: tetromino.id,
       color: tetromino.color,
-      globalPosition: [],
       localOffset: mapping,
     }));
     delete tetromino.blockMapping;

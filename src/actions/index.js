@@ -1,5 +1,6 @@
 export const GAME_OVER = 'GAME_OVER';
 export const GAME_TICK = 'GAME_TICK';
+export const INCREMENT_TETROMINO_POSITION = 'INCREMENT_TETROMINO_POSITION';
 export const INITIALIZE_GAME = 'INITIALIZE_GAME';
 export const PLACE_TETROMINO_ON_BOARD = 'PLACE_TETROMINO_ON_BOARD';
 export const RESET_GAME = 'RESET_GAME';
@@ -12,6 +13,11 @@ export const gameOver = () => ({
 
 export const gameTick = () => ({
   type: GAME_TICK,
+});
+
+export const incrementTetrominoPosition = ({ id }) => ({
+  type: INCREMENT_TETROMINO_POSITION,
+  id,
 });
 
 export const initializeGame = () => ({

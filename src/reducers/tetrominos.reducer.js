@@ -15,7 +15,7 @@ const initialState = {
   queue: [],
 };
 const startingPosition = [
-  NUM_COLS / 2,
+  Math.floor(NUM_COLS / 2),
   0,
 ];
 
